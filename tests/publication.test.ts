@@ -52,6 +52,7 @@ function syntheticProject(base: string) {
     'index.html': '<!doctype html><title>Synthetic test fixture</title>',
     '.env.example': 'VITE_API_BASE_URL=http://127.0.0.1:5667\n',
     '.gitignore': '.cache/\n.secrets/\nnode_modules/\ntest-results/\n',
+    '.gitattributes': '* text=auto\n*.json text eol=lf\n',
     'README.md': '# Synthetic publication fixture\n\nThis is authored test data, not the application.\n',
     'CHANGELOG.md': '# Synthetic changes\n',
     'LICENSE': license,

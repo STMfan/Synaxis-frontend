@@ -7,7 +7,7 @@ const rootIndex = args.indexOf('--root');
 if (rootIndex >= 0 && !args[rootIndex + 1]) throw new Error('--root requires a frontend directory');
 const root = rootIndex >= 0 ? resolve(args.splice(rootIndex, 2)[1]) : resolve(import.meta.dirname, '..');
 const comparable = value => process.platform === 'win32' ? value.toLowerCase() : value;
-const files = ['package.json', 'package-lock.json', 'tsconfig.json', 'vite.config.ts', 'index.html', '.env.example', '.gitignore', 'README.md', 'CHANGELOG.md', 'LICENSE', 'NOTICE', '.github/workflows/frontend.yml'];
+const files = ['package.json', 'package-lock.json', 'tsconfig.json', 'vite.config.ts', 'index.html', '.env.example', '.gitignore', '.gitattributes', 'README.md', 'CHANGELOG.md', 'LICENSE', 'NOTICE', '.github/workflows/frontend.yml'];
 const directories = ['src', 'scripts', 'tests', 'contracts', 'docs', 'assets/branding', 'public', 'src-tauri/src', 'src-tauri/capabilities', 'src-tauri/icons', 'src-tauri/gen/android', 'src-tauri/plugins/secure-keystore'];
 files.push(...['Cargo.toml', 'Cargo.lock', 'build.rs', 'tauri.conf.json', 'Info.plist'].map(name => `src-tauri/${name}`));
 const excludedDirectories = new Set(['archive', 'test-results', 'releases', 'node_modules', 'target', '.git', '.cache', '.gradle', '.kotlin', '.tauri', 'build', '__pycache__', 'jniLibs', '.idea', '.vscode', 'examples', 'private-fonts']);
@@ -56,7 +56,7 @@ function add(source, destination) {
     if (/\/gen\/android\/(?:keystore|key|local)\.properties$/.test(destination)) return;
     issues.push(`Private file found in publication input: ${destination}`); return;
   }
-  const text = textFiles.test(destination) || ['.gitignore', '.editorconfig'].includes(basename(destination));
+  const text = textFiles.test(destination) || ['.gitignore', '.gitattributes', '.editorconfig'].includes(basename(destination));
   const resource = binaryResources.find(rule => rule.path.test(destination));
   if (!text && !resource) { issues.push(`Unsupported public file type: ${destination}`); return; }
   if (entry.size > 16 * 1024 * 1024) { issues.push(`Oversized public file: ${destination}`); return; }

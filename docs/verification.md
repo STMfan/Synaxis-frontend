@@ -8,14 +8,14 @@
 |---|---|---|
 | `npm run check` | 公开源码和锁定依赖 | TypeScript 与 UI/通信分层；不证明实际设备布局 |
 | `npm test` | 随源码提供的合成数据 | 登录期限、刷新竞争、请求取消、SSE、幂等、只读恢复、输出及课标语义；不调用供应商 |
-| `npm run check:contract` | 客户端基线与后端导出 OpenAPI | 操作、字段约束、鉴权和事件定义；不证明业务实现与部署状态 |
+| `npm run check:contract` | 客户端基线与来源 SHA-256 | 离线检查已审查基线完整性；加 `-- --against /path/to/openapi.json` 才比较后端操作、字段、鉴权及事件兼容性 |
 | `npm run build` | 公开构建资源 | 生成生产 Web 资源并检查体积；不含原生工具链和设备启动 |
 | `npm run check:publication` | 白名单候选源码 | 检查公开边界、必需材料和常见秘密格式；不扫描不存在的 Git 历史 |
 | `npm run check:notices` | 锁定生产 NPM 依赖及许可原文 | 验证随产物携带的全文与版权记录，不等同于原生 Cargo 许可清单 |
 
 这些检查不需要生产 `.env`、账号、签名库、运行数据库、课标数据、模型或 `test-results/`。输出目录和私有归档不作为输入，测试使用虚构的令牌、用户与教学内容。
 
-根级 [前端工作流](../../.github/workflows/frontend.yml) 在 PR、推送和手动触发时执行核心检查，并在 Linux 上导出源码后独立复验。后端检查由独立的 `backend.yml` 负责。工作流文件已提供不等于远程运行已通过；其状态以实际 Actions 结果为准。
+根级 [前端工作流](../.github/workflows/frontend.yml) 在 PR、推送和手动触发时执行核心检查，并在 Linux 上导出源码后独立复验。后端检查由后端独立仓库的工作流负责。工作流文件已提供不等于远程运行已通过；其状态以实际 Actions 结果为准。
 
 ## 公开 HTTP 夹具与浏览器回归
 

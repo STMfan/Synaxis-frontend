@@ -1,6 +1,6 @@
 # 客户端 API 对应与协议边界
 
-当前客户端消费者基线为 [contracts/openapi.json](../contracts/openapi.json)，服务端生成契约为 `backend/contracts/openapi.json`。更新后端时先重新生成服务契约，再运行 `npm run check:contract` 并审查差异；不能仅凭版本号或路径数量判断兼容。完整字段与服务语义见 [后端前端契约](../../backend/docs/frontend-contract.md)。
+当前客户端消费者基线为 [contracts/openapi.json](../contracts/openapi.json)，服务端生成契约为后端仓库根目录的 `contracts/openapi.json`。更新后端时先重新生成服务契约，再运行 `npm run check:contract -- --against /path/to/backend/contracts/openapi.json` 并审查差异；不能仅凭版本号或路径数量判断兼容。完整字段与服务语义见 [后端前端契约](https://github.com/STMfan/Synaxis-backend/blob/main/docs/frontend-contract.md)。
 
 ## 业务入口
 

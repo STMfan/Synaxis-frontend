@@ -23,7 +23,7 @@ jobs:
         os: [ubuntu-24.04, windows-latest]
     defaults:
       run:
-        working-directory: frontend
+        working-directory: .
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-          cache-dependency-path: frontend/package-lock.json
+          cache-dependency-path: package-lock.json
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         if: runner.os == 'Linux'
         with:
@@ -46,7 +46,7 @@ jobs:
       - name: Check the public HTTP and SSE fixture
         if: runner.os == 'Linux'
         run: python -m unittest discover -s tests -p '*_test.py' -v
-      - name: Check the backend consumer contract
+      - name: Check reviewed API baseline integrity
         run: npm run check:contract
       - name: Build production Web assets
         run: npm run build
@@ -60,7 +60,7 @@ jobs:
         run: |
           node scripts/publication.mjs --output "$RUNNER_TEMP/synaxis-client-source"
           cp -a "$RUNNER_TEMP/synaxis-client-source" "$RUNNER_TEMP/synaxis-client-check"
-          cd "$RUNNER_TEMP/synaxis-client-check/frontend"
+          cd "$RUNNER_TEMP/synaxis-client-check"
           npm ci
           npm run check
           npm test

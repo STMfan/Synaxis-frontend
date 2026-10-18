@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { copyFileSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -25,6 +26,19 @@ test('reviewed API gate detects wire, authentication and SSE regressions without
     },
   };
   writeFileSync(join(sandbox, 'contracts/openapi.json'), JSON.stringify(baseline));
+  await t.test('standalone baseline check needs no sibling backend and rejects unreviewed changes', () => {
+    const path = join(sandbox, 'contracts/source.json');
+    const bytes = readFileSync(join(sandbox, 'contracts/openapi.json'));
+    writeFileSync(path, JSON.stringify({ revision: 'synthetic-review', sha256: createHash('sha256').update(bytes).digest('hex') }));
+    const checkBaseline = () => spawnSync(process.execPath, [join(sandbox, 'scripts/check-contract.mjs')], { encoding: 'utf8' });
+    const valid = checkBaseline();
+    assert.equal(valid.status, 0, valid.stderr);
+    assert.match(valid.stdout, /baseline integrity/);
+    writeFileSync(path, JSON.stringify({ revision: 'synthetic-review', sha256: '0'.repeat(64) }));
+    const invalid = checkBaseline();
+    assert.notEqual(invalid.status, 0);
+    assert.match(invalid.stderr, /Reviewed contract digest changed/);
+  });
   function check(mutate: (candidate: any) => void) {
     const candidate = structuredClone(baseline); mutate(candidate);
     const path = join(sandbox, 'candidate.json'); writeFileSync(path, JSON.stringify(candidate));

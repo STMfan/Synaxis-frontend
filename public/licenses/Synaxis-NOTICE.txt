@@ -31,3 +31,8 @@ standalone artwork redistribution rights.
 Backend services, curriculum texts, source PDFs, downloaded models, runtime
 data, account credentials and release-signing materials are not bundled
 with this client source export and are not relicensed by this notice.
+
+contracts/openapi.json is a reviewed public schema from Synaxis-backend,
+Copyright (c) 2026 STMfan, under the MIT license reproduced in LICENSE.
+Its upstream repository, revision, path and content hash are recorded in
+contracts/source.json. No backend implementation is included.

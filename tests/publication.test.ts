@@ -41,8 +41,6 @@ function put(base: string, path: string, text: string) {
 }
 
 function syntheticProject(base: string) {
-  put(base, 'LICENSE', license);
-  put(base, 'NOTICE', 'Synthetic source subset: module notices retain their respective boundaries.\n');
   const frontend = join(base, 'frontend');
   const pkg = { name: 'synthetic-publication-fixture', version, type: 'module', license: 'MIT' };
   const openapi = JSON.stringify({ openapi: '3.1.0', info: { title: 'Synthetic API', version }, paths: {} });
@@ -77,11 +75,7 @@ function syntheticProject(base: string) {
     'src-tauri/plugins/secure-keystore/LICENSE-MIT': license,
   };
   for (const [path, text] of Object.entries(files)) put(frontend, path, text);
-  put(base, '.github/workflows/frontend.yml', 'name: Synthetic fixture\non: workflow_dispatch\njobs: {}\n');
-  put(base, 'backend/contracts/openapi.json', openapi);
-  put(base, 'backend/docs/frontend-contract.md', '# Synthetic public contract\n');
-  put(base, 'backend/LICENSE', license);
-  put(base, 'backend/NOTICE', 'Synthetic backend contract fixture only.\n');
+  put(frontend, '.github/workflows/frontend.yml', 'name: Synthetic fixture\non: workflow_dispatch\njobs: {}\n');
   return frontend;
 }
 
@@ -115,11 +109,14 @@ test('publication CLI exports only vetted synthetic sources and rejects unsafe i
     for (const path of excluded) put(fixture.frontend, path, 'Synthetic private/generated sentinel.\n');
     const exported = run(fixture.frontend, '--output', fixture.output);
     assert.equal(exported.status, 0, exported.stderr);
-    for (const path of excluded) assert.equal(existsSync(join(fixture.output, 'frontend', path)), false, path);
-    assert.equal(readFileSync(join(fixture.output, 'frontend/src/synthetic.ts'), 'utf8'), '// SPDX-License-Identifier: MIT\nexport const synthetic = true;\n');
+    for (const path of excluded) assert.equal(existsSync(join(fixture.output, path)), false, path);
+    assert.equal(readFileSync(join(fixture.output, 'src/synthetic.ts'), 'utf8'), '// SPDX-License-Identifier: MIT\nexport const synthetic = true;\n');
     assert.ok(existsSync(join(fixture.output, '.github/workflows/frontend.yml')));
-    assert.ok(existsSync(join(fixture.output, 'backend/contracts/openapi.json')));
-    const checked = run(join(fixture.output, 'frontend'), '--check');
+    assert.ok(existsSync(join(fixture.output, 'contracts/openapi.json')));
+    assert.equal(existsSync(join(fixture.output, 'backend')), false);
+    assert.equal(existsSync(join(fixture.output, 'frontend')), false);
+    assert.equal(readFileSync(join(fixture.output, 'README.md'), 'utf8'), readFileSync(join(fixture.frontend, 'README.md'), 'utf8'));
+    const checked = run(fixture.output, '--check');
     assert.equal(checked.status, 0, checked.stderr);
   });
 
@@ -195,7 +192,7 @@ test('publication CLI exports only vetted synthetic sources and rejects unsafe i
     rmSync(join(missing.frontend, 'LICENSE'));
     const missingResult = run(missing.frontend, '--output', missing.output);
     assert.equal(missingResult.status, 1);
-    assert.match(missingResult.stderr, /Missing public source: frontend\/LICENSE/);
+    assert.match(missingResult.stderr, /Missing public source: LICENSE/);
     assert.equal(existsSync(missing.output), false);
     const unset = project();
     put(unset.frontend, 'package.json', JSON.stringify({ name: 'synthetic-fixture', version, license: 'UNLICENSED' }));

@@ -1,9 +1,38 @@
-Synaxis licensing boundaries
+Synaxis client licensing boundaries
 
-Project-authored code and documentation are offered under the MIT license
-in LICENSE. Third-party dependencies, models, curriculum material, fonts,
-artwork, trademarks and private runtime materials keep their own rights.
+Project-authored client source, build scripts, tests and documentation are
+offered under the MIT license in LICENSE. This grant does not replace the
+licenses or permissions of third-party components and resources.
 
-For an included backend module see backend/NOTICE. For an included client
-module see frontend/NOTICE and its third-party notices. Source subsets may
-omit either module; this notice does not grant rights to omitted materials.
+JetBrains Mono is distributed under SIL Open Font License 1.1. Its license
+is included in public/licenses/JetBrainsMono-OFL.txt. Material Design Icons
+paths retain Pictogrammers' notices in public/licenses/MDI-LICENSE.txt and
+the Apache 2.0 license in public/licenses/Apache-2.0.txt.
+
+OPPO Sans and DingTalk JinBuTi font files are not distributed in the public
+source or application. Optional CSS local() references only access fonts
+already installed by a user through an authorized channel. The local
+licensing references do not grant redistribution or conversion rights.
+See docs/typography.md for official sources and platform limitations.
+
+The secure-keystore plugin retains its upstream MIT OR Apache-2.0 licenses
+in src-tauri/plugins/secure-keystore/. Its local changes are recorded in
+SYNAXIS-PATCH.md. npm and Cargo dependencies retain their own licenses;
+their versions are recorded in package-lock.json and src-tauri/Cargo.lock.
+The production npm dependency copyright, license and NOTICE texts are
+included in public/licenses/Third-Party-NPM.txt, with versions and source
+text hashes in Third-Party-NPM.json. This npm inventory does not represent
+a complete native Cargo license inventory.
+
+The supplied Synaxis and Expert branding is retained for use with this
+client. The code license does not grant separate trademark, endorsement or
+standalone artwork redistribution rights.
+
+Backend services, curriculum texts, source PDFs, downloaded models, runtime
+data, account credentials and release-signing materials are not bundled
+with this client source export and are not relicensed by this notice.
+
+contracts/openapi.json is a reviewed public schema from Synaxis-backend,
+Copyright (c) 2026 STMfan, under the MIT license reproduced in LICENSE.
+Its upstream repository, revision, path and content hash are recorded in
+contracts/source.json. No backend implementation is included.

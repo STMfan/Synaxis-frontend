@@ -1,14 +1,13 @@
 /** Explicit public source boundary. This tool never walks the working folder as a whole. */
-import { cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
+import { cpSync, existsSync, lstatSync, mkdirSync, readFileSync, readdirSync } from 'node:fs';
 import { basename, dirname, relative, resolve, sep } from 'node:path';
 
 const args = process.argv.slice(2);
 const rootIndex = args.indexOf('--root');
 if (rootIndex >= 0 && !args[rootIndex + 1]) throw new Error('--root requires a frontend directory');
 const root = rootIndex >= 0 ? resolve(args.splice(rootIndex, 2)[1]) : resolve(import.meta.dirname, '..');
-const workspace = resolve(root, '..');
 const comparable = value => process.platform === 'win32' ? value.toLowerCase() : value;
-const files = ['package.json', 'package-lock.json', 'tsconfig.json', 'vite.config.ts', 'index.html', '.env.example', '.gitignore', 'README.md', 'CHANGELOG.md', 'LICENSE', 'NOTICE'];
+const files = ['package.json', 'package-lock.json', 'tsconfig.json', 'vite.config.ts', 'index.html', '.env.example', '.gitignore', 'README.md', 'CHANGELOG.md', 'LICENSE', 'NOTICE', '.github/workflows/frontend.yml'];
 const directories = ['src', 'scripts', 'tests', 'contracts', 'docs', 'assets/branding', 'public', 'src-tauri/src', 'src-tauri/capabilities', 'src-tauri/icons', 'src-tauri/gen/android', 'src-tauri/plugins/secure-keystore'];
 files.push(...['Cargo.toml', 'Cargo.lock', 'build.rs', 'tauri.conf.json', 'Info.plist'].map(name => `src-tauri/${name}`));
 const excludedDirectories = new Set(['archive', 'test-results', 'releases', 'node_modules', 'target', '.git', '.cache', '.gradle', '.kotlin', '.tauri', 'build', '__pycache__', 'jniLibs', '.idea', '.vscode', 'examples', 'private-fonts']);
@@ -19,13 +18,13 @@ const textFiles = /\.(?:ts|tsx|js|mjs|cjs|json|md|txt|toml|lock|css|html|xml|svg
 // Binary resources are allowed by both location and format, never by extension
 // alone. New resource classes require an explicit review of this boundary.
 const binaryResources = [
-  { path: /^frontend\/(?:assets\/branding|public\/logos)\/[^/]+\.png$/, magic: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]) },
-  { path: /^frontend\/src-tauri\/(?:icons\/.*|gen\/android\/app\/src\/main\/res\/.*)\.png$/, magic: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]) },
-  { path: /^frontend\/src-tauri\/icons\/[^/]+\.ico$/, magic: Buffer.from([0, 0, 1, 0]) },
-  { path: /^frontend\/src-tauri\/icons\/[^/]+\.icns$/, magic: Buffer.from('icns') },
-  { path: /^frontend\/public\/fonts\/jetbrains-mono\.woff2$/, magic: Buffer.from('wOF2') },
-  { path: /^frontend\/public\/licenses\/DingTalk-JinBu-License\.pdf$/, magic: Buffer.from('%PDF-') },
-  { path: /^frontend\/src-tauri\/gen\/android\/gradle\/wrapper\/gradle-wrapper\.jar$/, magic: Buffer.from([80, 75, 3, 4]) },
+  { path: /^(?:assets\/branding|public\/logos)\/[^/]+\.png$/, magic: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]) },
+  { path: /^src-tauri\/(?:icons\/.*|gen\/android\/app\/src\/main\/res\/.*)\.png$/, magic: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]) },
+  { path: /^src-tauri\/icons\/[^/]+\.ico$/, magic: Buffer.from([0, 0, 1, 0]) },
+  { path: /^src-tauri\/icons\/[^/]+\.icns$/, magic: Buffer.from('icns') },
+  { path: /^public\/fonts\/jetbrains-mono\.woff2$/, magic: Buffer.from('wOF2') },
+  { path: /^public\/licenses\/DingTalk-JinBu-License\.pdf$/, magic: Buffer.from('%PDF-') },
+  { path: /^src-tauri\/gen\/android\/gradle\/wrapper\/gradle-wrapper\.jar$/, magic: Buffer.from([80, 75, 3, 4]) },
 ];
 const secretPatterns = [
   /-----BEGIN (?:RSA |EC |OPENSSH |DSA )?PRIVATE KEY-----/,
@@ -77,13 +76,10 @@ function add(source, destination) {
 }
 
 for (const name of files) {
-  if (!existsSync(resolve(root, name))) { issues.push(`Missing public source: frontend/${name}`); continue; }
-  add(resolve(root, name), `frontend/${name}`);
+  if (!existsSync(resolve(root, name))) { issues.push(`Missing public source: ${name}`); continue; }
+  add(resolve(root, name), name);
 }
-for (const name of directories) add(resolve(root, name), `frontend/${name}`);
-for (const name of ['LICENSE', 'NOTICE', '.github/workflows/frontend.yml', 'backend/contracts/openapi.json', 'backend/docs/frontend-contract.md', 'backend/LICENSE', 'backend/NOTICE']) {
-  add(resolve(workspace, name), name);
-}
+for (const name of directories) add(resolve(root, name), name);
 const pkg = JSON.parse(readFileSync(resolve(root, 'package.json'), 'utf8'));
 const tauri = JSON.parse(readFileSync(resolve(root, 'src-tauri/tauri.conf.json'), 'utf8'));
 const cargo = readFileSync(resolve(root, 'src-tauri/Cargo.toml'), 'utf8');
@@ -117,7 +113,6 @@ if (args.length === 1 && args[0] === '--check') {
     mkdirSync(dirname(target), { recursive: true });
     cpSync(source, target, { dereference: false });
   }
-  writeFileSync(resolve(output, 'README.md'), `# Synaxis client ${pkg.version}\n\nThis source export contains frontend/, its root CI workflow, and the backend's reviewed public API contract and notices. It does not contain the backend implementation or runtime assets. Start with [frontend/README.md](frontend/README.md).\n\nNo credentials, signing keys, fonts with restricted redistribution, installed dependencies, or private QA reports are included. The allowlist and format scan do not attest Git history.\n`);
   console.log(`Exported ${candidates.size} vetted source files to ${output}`);
 } else {
   throw new Error('Usage: node scripts/publication.mjs [--root <frontend-directory>] --check | --output <new-directory>');

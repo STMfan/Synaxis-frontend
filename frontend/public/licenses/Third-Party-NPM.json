@@ -1,0 +1,300 @@
+{
+  "scope": "Locked production npm dependency closure, including dependencies that may be tree-shaken; installed optional packages only. Native Cargo dependencies are outside this npm inventory.",
+  "packages": [
+    {
+      "name": "@mathjax/mathjax-newcm-font",
+      "version": "4.1.3",
+      "license": "Apache-2.0",
+      "supplement": "Apache-2.0 option declared in @mathjax/mathjax-newcm-font@4.1.3/package.json; full text from @mathjax/src@4.1.3/LICENSE; attribution from ts/mathjax.ts. No new font or dependency license is granted by Synaxis.",
+      "files": [
+        {
+          "file": "SUPPLEMENT-APACHE-2.0",
+          "sha256": "283ea6cc2997a1a70da0049e09adf9317bb60ca1b51279b65196b83a69e1996b"
+        },
+        {
+          "file": "UPSTREAM-COPYRIGHT",
+          "sha256": "93712197569a1f56e41bee14eab61db5c9f172266980e7cb675f347909ae0b48"
+        }
+      ]
+    },
+    {
+      "name": "@mathjax/mathjax-tex-font",
+      "version": "4.1.3",
+      "license": "Apache-2.0",
+      "supplement": "Apache-2.0 option declared in @mathjax/mathjax-tex-font@4.1.3/package.json; full text from @mathjax/src@4.1.3/LICENSE; attribution from ts/mathjax.ts. No new font or dependency license is granted by Synaxis.",
+      "files": [
+        {
+          "file": "SUPPLEMENT-APACHE-2.0",
+          "sha256": "283ea6cc2997a1a70da0049e09adf9317bb60ca1b51279b65196b83a69e1996b"
+        },
+        {
+          "file": "UPSTREAM-COPYRIGHT",
+          "sha256": "93712197569a1f56e41bee14eab61db5c9f172266980e7cb675f347909ae0b48"
+        }
+      ]
+    },
+    {
+      "name": "@mathjax/src",
+      "version": "4.1.3",
+      "license": "Apache-2.0",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "283ea6cc2997a1a70da0049e09adf9317bb60ca1b51279b65196b83a69e1996b"
+        }
+      ]
+    },
+    {
+      "name": "@tauri-apps/api",
+      "version": "2.12.1",
+      "license": "Apache-2.0 OR MIT",
+      "files": [
+        {
+          "file": "LICENSE-APACHE-2.0",
+          "sha256": "4bf96504d6e83ce5c6fc7167f1795d9ceaa68e70ab86bc5d08ab93184262bbbe"
+        },
+        {
+          "file": "LICENSE-MIT",
+          "sha256": "89ff9689dcf9dd53968785d05a26f7898bb169dbfcada8d032b3e68cf0d55607"
+        },
+        {
+          "file": "LICENSE.spdx",
+          "sha256": "7c667b0cf9860e6a1e3f221a84c0162f35268665acf88dce521ed665ed1e7b93"
+        }
+      ]
+    },
+    {
+      "name": "@tauri-apps/plugin-http",
+      "version": "2.8.0",
+      "license": "MIT OR Apache-2.0",
+      "supplement": "Apache-2.0 option declared in @tauri-apps/plugin-http@2.8.0/package.json; full text from @tauri-apps/api@2.12.1/LICENSE-APACHE-2.0; attribution from LICENSE.spdx. No new font or dependency license is granted by Synaxis.",
+      "files": [
+        {
+          "file": "LICENSE.spdx",
+          "sha256": "eb8a6c84630461b352badcab1dbe5d0168c56d377358b2b8c86b51003272d5ef"
+        },
+        {
+          "file": "SUPPLEMENT-APACHE-2.0",
+          "sha256": "4bf96504d6e83ce5c6fc7167f1795d9ceaa68e70ab86bc5d08ab93184262bbbe"
+        },
+        {
+          "file": "UPSTREAM-COPYRIGHT",
+          "sha256": "eb8a6c84630461b352badcab1dbe5d0168c56d377358b2b8c86b51003272d5ef"
+        }
+      ]
+    },
+    {
+      "name": "@types/trusted-types",
+      "version": "2.0.7",
+      "license": "MIT",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "ff82c90f84945c60601e96b43246009b9bc589f3ebe1cd8a0fd39a3520d8c310"
+        }
+      ]
+    },
+    {
+      "name": "@xmldom/xmldom",
+      "version": "0.9.12",
+      "license": "MIT",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "61057b4f2bed7f2473705c991d4e971baf248e828649cec09b2e7e103644e0a3"
+        }
+      ]
+    },
+    {
+      "name": "balanced-match",
+      "version": "4.0.4",
+      "license": "MIT",
+      "files": [
+        {
+          "file": "LICENSE.md",
+          "sha256": "23b57495a1f9bfc39b3641e8731cec7bc0d21ae332d472530e6c427cbaea46ed"
+        }
+      ]
+    },
+    {
+      "name": "brace-expansion",
+      "version": "5.0.12",
+      "license": "MIT",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "f36e2da26df2488bf0d0ecf2f54a4ba02e2372cdd27ee07974da85a0975e29c3"
+        }
+      ]
+    },
+    {
+      "name": "commander",
+      "version": "14.0.3",
+      "license": "MIT",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "4cc9c2af4eb0056cd4d2297b7404819e3816b4c44b7f8012c42d5fd671d783d3"
+        }
+      ]
+    },
+    {
+      "name": "dompurify",
+      "version": "3.4.16",
+      "license": "(MPL-2.0 OR Apache-2.0)",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "283ea6cc2997a1a70da0049e09adf9317bb60ca1b51279b65196b83a69e1996b"
+        },
+        {
+          "file": "LICENSE-MPL",
+          "sha256": "c76f740d1521b9bed9ca7a04ad526c310493c62621b1341d623b431736533b30"
+        }
+      ]
+    },
+    {
+      "name": "glob",
+      "version": "13.0.6",
+      "license": "BlueOak-1.0.0",
+      "files": [
+        {
+          "file": "LICENSE.md",
+          "sha256": "e80af3fc41092353787eb36021f0aec4e2a7d2e920c923ed4d4f569ac3df2d43"
+        }
+      ]
+    },
+    {
+      "name": "lru-cache",
+      "version": "11.5.3",
+      "license": "BlueOak-1.0.0",
+      "files": [
+        {
+          "file": "LICENSE.md",
+          "sha256": "1a9975c75cfc205b54615d0f0daad869a240f5e348eb1a3d431fc7644dd5fd67"
+        }
+      ]
+    },
+    {
+      "name": "marked",
+      "version": "16.4.2",
+      "license": "MIT",
+      "files": [
+        {
+          "file": "LICENSE.md",
+          "sha256": "dd923de9769808b2820f68a2ea9d90b62d9348709e13ee95c234e4acc6d3ee09"
+        }
+      ]
+    },
+    {
+      "name": "mhchemparser",
+      "version": "4.2.1",
+      "license": "Apache-2.0",
+      "files": [
+        {
+          "file": "LICENSE.txt",
+          "sha256": "6dc0e068dcf3a5bc8e054205b85b7720e1d49265bbc64bf515d2cf79197df69a"
+        }
+      ]
+    },
+    {
+      "name": "minimatch",
+      "version": "10.2.6",
+      "license": "BlueOak-1.0.0",
+      "files": [
+        {
+          "file": "LICENSE.md",
+          "sha256": "aa4c6585f201d6525bf712407f54c84fd7d607f1c129a25294b0969fbfba6863"
+        }
+      ]
+    },
+    {
+      "name": "minipass",
+      "version": "7.1.3",
+      "license": "BlueOak-1.0.0",
+      "files": [
+        {
+          "file": "LICENSE.md",
+          "sha256": "1a9975c75cfc205b54615d0f0daad869a240f5e348eb1a3d431fc7644dd5fd67"
+        }
+      ]
+    },
+    {
+      "name": "mj-context-menu",
+      "version": "1.0.0",
+      "license": "Apache-2.0",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "283ea6cc2997a1a70da0049e09adf9317bb60ca1b51279b65196b83a69e1996b"
+        }
+      ]
+    },
+    {
+      "name": "package-json-from-dist",
+      "version": "1.0.1",
+      "license": "BlueOak-1.0.0",
+      "files": [
+        {
+          "file": "LICENSE.md",
+          "sha256": "e80af3fc41092353787eb36021f0aec4e2a7d2e920c923ed4d4f569ac3df2d43"
+        }
+      ]
+    },
+    {
+      "name": "path-scurry",
+      "version": "2.0.2",
+      "license": "BlueOak-1.0.0",
+      "files": [
+        {
+          "file": "LICENSE.md",
+          "sha256": "1a9975c75cfc205b54615d0f0daad869a240f5e348eb1a3d431fc7644dd5fd67"
+        }
+      ]
+    },
+    {
+      "name": "preact",
+      "version": "10.29.8",
+      "license": "MIT",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "ecc934075c786ff5a83b109f49b32b1efb57cd99410e194e15b01dc144dc7fd5"
+        }
+      ]
+    },
+    {
+      "name": "rimraf",
+      "version": "6.1.3",
+      "license": "BlueOak-1.0.0",
+      "files": [
+        {
+          "file": "LICENSE.md",
+          "sha256": "1a9975c75cfc205b54615d0f0daad869a240f5e348eb1a3d431fc7644dd5fd67"
+        }
+      ]
+    },
+    {
+      "name": "speech-rule-engine",
+      "version": "5.0.0-rc.4",
+      "license": "Apache-2.0",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "4bf96504d6e83ce5c6fc7167f1795d9ceaa68e70ab86bc5d08ab93184262bbbe"
+        }
+      ]
+    },
+    {
+      "name": "wicked-good-xpath",
+      "version": "1.3.0",
+      "license": "MIT",
+      "files": [
+        {
+          "file": "LICENSE",
+          "sha256": "70d29fda5dafb3efd4c1c537f21258dab4057591dd810de9cafcf670a8d4f55f"
+        }
+      ]
+    }
+  ]
+}

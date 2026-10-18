@@ -1,0 +1,6 @@
+{
+  "default": "../assets/branding/00-synaxis.png",
+  "bg_color": "#101820",
+  "android_fg": "../assets/branding/00-synaxis.png",
+  "android_fg_scale": 100
+}

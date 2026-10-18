@@ -1,0 +1,211 @@
+{
+  "_fixture": {
+    "kind": "synthetic",
+    "description": "Public, authored test data. No live account, private report, original curriculum text, PDF or model is required.",
+    "timestamp": "2026-01-01T08:00:00+00:00"
+  },
+  "profile": {
+    "id": 1,
+    "username": "fixture_student",
+    "created_at": "2026-01-01T08:00:00+00:00",
+    "preferences": {
+      "grade": "高二",
+      "province": null,
+      "textbook": "合成测试教材",
+      "subject": "math"
+    }
+  },
+  "capabilities": {
+    "version": "1.0.0",
+    "experts": [
+      {
+        "name": "Poiesis",
+        "translation": "文辞",
+        "subjects": [
+          "chinese"
+        ],
+        "skills": [],
+        "effort": "low",
+        "images": false
+      },
+      {
+        "name": "Nexus",
+        "translation": "语言",
+        "subjects": [
+          "english"
+        ],
+        "skills": [],
+        "effort": "low",
+        "images": false
+      },
+      {
+        "name": "Euclid",
+        "translation": "数理",
+        "subjects": [
+          "math"
+        ],
+        "skills": [],
+        "effort": "low",
+        "images": true
+      },
+      {
+        "name": "Turing",
+        "translation": "实验",
+        "subjects": [
+          "physics",
+          "chemistry"
+        ],
+        "skills": [],
+        "effort": "low",
+        "images": true
+      },
+      {
+        "name": "Nomos",
+        "translation": "思辨",
+        "subjects": [
+          "politics"
+        ],
+        "skills": [],
+        "effort": "low",
+        "images": false
+      },
+      {
+        "name": "Panopt",
+        "translation": "生命",
+        "subjects": [
+          "biology"
+        ],
+        "skills": [],
+        "effort": "low",
+        "images": true
+      },
+      {
+        "name": "Chronos",
+        "translation": "历史",
+        "subjects": [
+          "history"
+        ],
+        "skills": [],
+        "effort": "low",
+        "images": false
+      },
+      {
+        "name": "Meridian",
+        "translation": "地理",
+        "subjects": [
+          "geography"
+        ],
+        "skills": [],
+        "effort": "low",
+        "images": true
+      }
+    ],
+    "skills": [],
+    "image_max_count": 4,
+    "image_max_bytes": 10485760,
+    "image_max_pixels": 16000000,
+    "image_media_types": [
+      "image/png",
+      "image/jpeg"
+    ],
+    "formats": [
+      "markdown",
+      "latex",
+      "svg",
+      "html",
+      "localfile"
+    ],
+    "image_price": {
+      "model": "synthetic",
+      "credits": 0,
+      "cost": "0",
+      "currency": "CNY",
+      "requires_explicit_consent": true
+    },
+    "max_steps": 8,
+    "max_tool_calls": 8,
+    "max_output_tokens": 393216,
+    "streaming": true,
+    "reasoning_streaming": true,
+    "reasoning_source": "provider_returned_thinking",
+    "reasoning_format": "text",
+    "artifact_placement": "ordered_blocks",
+    "stream_preview_format": "text",
+    "continuation_states": [
+      "completed",
+      "waiting",
+      "cancelled",
+      "failed"
+    ],
+    "budget_enforced": true,
+    "session_budget_cny": "5",
+    "syllabus": {
+      "availability": "ready",
+      "reason": null,
+      "edition": "合成课程标准测试样例",
+      "subjects": [
+        "math"
+      ],
+      "course_categories": [
+        "必修课程",
+        "选择性必修课程"
+      ],
+      "modes": [
+        "lexical",
+        "semantic",
+        "hybrid"
+      ],
+      "default_mode": "hybrid",
+      "model": "synthetic-no-model",
+      "chunks": 1,
+      "sections": 1,
+      "local_only": true,
+      "query_token_limit": 512,
+      "scope": "Synthetic test data; not a curriculum or exam reference."
+    }
+  },
+  "section": {
+    "schema_version": "1.0",
+    "id": "synthetic-functions",
+    "document_id": "synthetic-math",
+    "title": "函数测试章节",
+    "subject": "数学",
+    "course_categories": [
+      "必修课程"
+    ],
+    "original_course_categories": [
+      "必修课程"
+    ],
+    "scope": "course_specific",
+    "heading_path": [
+      "合成测试",
+      "函数"
+    ],
+    "text": "这是专为自动测试编写的函数章节，不是任何真实课标的摘录。\n原始文本 <script>window.syllabusExecuted=true</script>",
+    "source": {
+      "file": "synthetic-syllabus.pdf",
+      "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "pdf_pages": [
+        4
+      ],
+      "pdf_page_start": 4,
+      "pdf_page_end": 4,
+      "printed_pages": [
+        1
+      ]
+    },
+    "quality_warnings": [
+      "合成质量提示 <img src=x onerror=window.syllabusExecuted=true>"
+    ],
+    "fragments": [
+      {
+        "pdf_page": 4,
+        "text": "合成片段，用于验证逐页原文。"
+      }
+    ],
+    "classification_evidence": null,
+    "extraction_method": "synthetic",
+    "table_row": null,
+    "table_caption": null
+  }
+}

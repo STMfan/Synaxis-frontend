@@ -1,0 +1,12 @@
+OPPO Sans - optional locally installed font
+Copyright OPPO Guangdong Mobile Telecommunications Corp., Ltd.
+
+Official font distribution and terms:
+https://www.coloros.com/article/A00000074/
+
+This project does not redistribute OPPO Sans font files. Its CSS can reference
+a font already installed on the user's device through local(). Users obtain
+the font from OPPO and must follow OPPO's current terms.
+
+This file records the source only. It is not a font license, a complete copy
+of the official terms, or permission to modify or redistribute the font.

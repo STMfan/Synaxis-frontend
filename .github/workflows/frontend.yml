@@ -1,0 +1,78 @@
+name: Frontend checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: frontend-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend / ${{ matrix.os }} / Node 22
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-latest]
+    defaults:
+      run:
+        working-directory: frontend
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        if: runner.os == 'Linux'
+        with:
+          python-version: '3.12'
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Type and architecture checks
+        run: npm run check
+      - name: Unit regressions without runtime assets or credentials
+        run: npm test
+      - name: Check the public HTTP and SSE fixture
+        if: runner.os == 'Linux'
+        run: python -m unittest discover -s tests -p '*_test.py' -v
+      - name: Check the backend consumer contract
+        run: npm run check:contract
+      - name: Build production Web assets
+        run: npm run build
+      - name: Verify complete npm dependency notices
+        run: npm run check:notices
+      - name: Scan publication candidates
+        run: npm run check:publication
+      - name: Export and independently verify the public source
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          node scripts/publication.mjs --output "$RUNNER_TEMP/synaxis-client-source"
+          cp -a "$RUNNER_TEMP/synaxis-client-source" "$RUNNER_TEMP/synaxis-client-check"
+          cd "$RUNNER_TEMP/synaxis-client-check/frontend"
+          npm ci
+          npm run check
+          npm test
+          python -m unittest discover -s tests -p '*_test.py' -v
+          npm run check:contract
+          npm run build
+          npm run check:notices
+          npm run check:publication
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: success() && runner.os == 'Linux'
+        with:
+          name: synaxis-client-source
+          path: ${{ runner.temp }}/synaxis-client-source/
+          include-hidden-files: true
+          if-no-files-found: error

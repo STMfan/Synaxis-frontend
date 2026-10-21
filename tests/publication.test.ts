@@ -97,6 +97,10 @@ test('publication CLI exports only vetted synthetic sources and rejects unsafe i
 
   await t.test('export omits caches, secrets and generated Android files; the export passes a fresh check', () => {
     const fixture = project();
+    const screenshot = Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+jRZkAAAAASUVORK5CYII=', 'base64');
+    const screenshotPath = join(fixture.frontend, 'docs/images/ask.png');
+    mkdirSync(dirname(screenshotPath), { recursive: true });
+    writeFileSync(screenshotPath, screenshot);
     const excluded = [
       '.cache/private-result.json', '.secrets/credentials.json', 'test-results/private-report.json',
       'src/.cache/private-result.json', 'src-tauri/gen/android/.gradle/cache.bin',
@@ -114,6 +118,7 @@ test('publication CLI exports only vetted synthetic sources and rejects unsafe i
     assert.equal(readFileSync(join(fixture.output, 'src/synthetic.ts'), 'utf8'), '// SPDX-License-Identifier: MIT\nexport const synthetic = true;\n');
     assert.ok(existsSync(join(fixture.output, '.github/workflows/frontend.yml')));
     assert.ok(existsSync(join(fixture.output, 'contracts/openapi.json')));
+    assert.deepEqual(readFileSync(join(fixture.output, 'docs/images/ask.png')), screenshot);
     assert.equal(existsSync(join(fixture.output, 'backend')), false);
     assert.equal(existsSync(join(fixture.output, 'frontend')), false);
     assert.equal(readFileSync(join(fixture.output, 'README.md'), 'utf8'), readFileSync(join(fixture.frontend, 'README.md'), 'utf8'));

@@ -1,6 +1,6 @@
-# 客户端 API 对应与协议边界
+# 客户端功能与 API 对应
 
-当前客户端消费者基线为 [contracts/openapi.json](../contracts/openapi.json)，服务端生成契约为后端仓库根目录的 `contracts/openapi.json`。更新后端时先重新生成服务契约，再运行 `npm run check:contract -- --against /path/to/backend/contracts/openapi.json` 并审查差异；不能仅凭版本号或路径数量判断兼容。完整字段与服务语义见 [后端前端契约](https://github.com/STMfan/Synaxis-backend/blob/main/docs/frontend-contract.md)。
+客户端通过统一通信层完成登录、提问、图文讲解、追问、会话管理、费用查询和课程标准检索。本文把这些学习功能对应到后端接口，并说明登录、提交与流式恢复的行为。
 
 ## 业务入口
 
@@ -20,7 +20,7 @@
 | 预算与账本 | `budget`、`usage`、`usageSummary` | 本题预算、费用记录及汇总 |
 | 课程标准 | `searchSyllabus`、`syllabusSection` | 我的 → 课程标准，检索命中 → 章节原文与来源 |
 
-登录使用表单编码，其余业务写请求使用 JSON。管理员操作、数据导入、供应商配置与独立沙箱不属于学生客户端接口。开发文档资源不伪装为业务功能。
+登录使用表单编码，其余业务写请求使用 JSON。管理员操作、数据导入、供应商配置与独立沙箱不属于学生客户端接口。
 
 ## 鉴权与可靠提交
 
@@ -43,3 +43,8 @@ JWT 只放在请求头。更换服务器时清除旧凭据，原生与浏览器�
 预算和账本使用服务端十进制金额与实际费率快照，未知费用保持未知，USD/CNY 分开。供应商代金券排除计费不等于供应商免费。额度及最大上下文由后端预算规则裁减，客户端不保证输出长度。
 
 课标接口使用学生 JWT，不创建教学或调用云端 embedding。客户端保留原文、分类、范围、来源 SHA-256 与质量提示，区分 PDF 页序和印刷页码。排序不是置信度，没有命中不代表不考；原始 PDF 不由章节 ID 伪造下载链接。数据或向量模型未就绪时保留明确状态和可用的降级方式。
+
+
+## 契约维护
+
+当前客户端消费者基线为 [contracts/openapi.json](../contracts/openapi.json)，服务端生成契约为后端仓库根目录的 `contracts/openapi.json`。更新后端时先重新生成服务契约，再运行 `npm run check:contract -- --against /path/to/backend/contracts/openapi.json` 并审查差异；不能仅凭版本号或路径数量判断兼容。完整字段与服务语义见 [后端前端契约](https://github.com/STMfan/Synaxis-backend/blob/main/docs/frontend-contract.md)。

@@ -18,6 +18,7 @@ const textFiles = /\.(?:ts|tsx|js|mjs|cjs|json|md|txt|toml|lock|css|html|xml|svg
 // Binary resources are allowed by both location and format, never by extension
 // alone. New resource classes require an explicit review of this boundary.
 const binaryResources = [
+  { path: /^docs\/images\/[^/]+\.png$/, magic: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]) },
   { path: /^(?:assets\/branding|public\/logos)\/[^/]+\.png$/, magic: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]) },
   { path: /^src-tauri\/(?:icons\/.*|gen\/android\/app\/src\/main\/res\/.*)\.png$/, magic: Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]) },
   { path: /^src-tauri\/icons\/[^/]+\.ico$/, magic: Buffer.from([0, 0, 1, 0]) },

@@ -58,4 +58,4 @@ Windows 缺少符号链接权限时，仅对 Tauri 明确的符号链接权限�
 
 生成的 `tauri.settings.gradle`、`app/tauri.properties`、`app/tauri.build.gradle.kts`、`app/proguard-tauri.pro`、`app/src/main/**/generated`、`app/src/main/assets/tauri.conf.json` 及 `jniLibs` 原生库不进入源码公开包。Tauri CLI 会根据当前机器重新生成；无需复制另一台机器的 Cargo 路径。图标由项目品牌素材自动生成，字体来源与分发策略见 [typography.md](typography.md)。
 
-浏览器、模拟器和实体手机验证应分别记录。Debug 构建通过或模拟器运行通过，均不代表所有 Android 厂商 ROM 和实体机已验收。
+平台检查入口见 [开发与验证](verification.md)。

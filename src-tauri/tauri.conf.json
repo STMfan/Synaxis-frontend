@@ -1,7 +1,7 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "Synaxis",
-  "version": "1.0.0",
+  "version": "1.0.0-hotfix1",
   "identifier": "cn.synaxis.client",
   "build": {
     "beforeDevCommand": "npm run dev",

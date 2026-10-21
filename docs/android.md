@@ -16,7 +16,6 @@ Android 客户端使用系统 WebView 与 Tauri Rust，最低 Android 7.0 / API 
 工具不在标准位置时，请配置这些环境变量。不要提交 `local.properties`、生成的 Cargo/Gradle 路径或密钥配置。
 
 ```sh
-cd frontend
 npm ci
 rustup target add aarch64-linux-android x86_64-linux-android
 npm run build:android -- --debug
@@ -45,7 +44,7 @@ keyPassword=<your-key-password>
 
 Windows 路径使用正斜杠。`storeFile` 也支持相对于 Android 工程根目录的路径。为兼容已有配置，共用密码时可用单个 `password` 代替 `storePassword` 和 `keyPassword`。配置、密钥和密码文件均须保留在忽略目录或工程外，并自行安全备份。
 
-Gradle 配置与 Debug 不要求发布密钥；只有执行 Release 任务才校验其是否完整。正式更新必须复用同一签名密钥，并增加 `src-tauri/gen/android/app/release.properties` 的 `versionCode`；`versionName` 由 Tauri 从应用版本生成。带后缀的预览版也必须使用递增的独立 `versionCode`。
+Gradle 配置与 Debug 不要求发布密钥；只有执行 Release 任务才校验其是否完整。正式更新必须复用同一签名密钥，并增加 `src-tauri/gen/android/app/release.properties` 的 `versionCode`；`versionName` 由 Tauri 从应用版本生成。热修订和预发布版本也必须使用递增的独立 `versionCode`。
 
 脚本对输出 APK 执行 `apksigner verify`，检查 100 MB 体积上限，再复制到 `releases/android/` 并生成 SHA256。正式签名流程可参考 [Tauri Android 签名文档](https://v2.tauri.app/distribute/sign/android/)。
 

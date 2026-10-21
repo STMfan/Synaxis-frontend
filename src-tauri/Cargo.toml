@@ -1,6 +1,6 @@
 [package]
 name = "synaxis-client"
-version = "1.0.0"
+version = "1.0.0-hotfix1"
 description = "Synaxis native WebView client"
 license = "MIT"
 publish = false

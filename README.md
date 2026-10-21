@@ -2,7 +2,7 @@
 
 源码仓库：[STMfan/Synaxis-frontend](https://github.com/STMfan/Synaxis-frontend)。服务端独立维护于 [STMfan/Synaxis-backend](https://github.com/STMfan/Synaxis-backend)。
 
-**1.0.0**，面向 Android、Windows、macOS 与 Linux 的教学客户端。使用 Preact、TypeScript 和 Tauri 2，调用系统 WebView；应用不附带 Chromium、Electron、Node 运行时、后端服务或课标模型。
+**1.0.0-hotfix1**，面向 Android、Windows、macOS 与 Linux 的教学客户端。使用 Preact、TypeScript 和 Tauri 2，调用系统 WebView；应用不附带 Chromium、Electron、Node 运行时、后端服务或课标模型。
 
 ## 开发
 
@@ -35,7 +35,7 @@ npm run dev
 - 学习偏好、费用账本、预算、服务状态、专家信息及课程标准检索与章节溯源。
 - 手机竖屏布局、系统主题、减少动态效果、来源页返回及桌面托盘。
 
-课标检索依赖服务端已配置的索引和模型；客户端不携带课程资料。2017 年版课程标准不等同于独立高考考纲。旧服务或未就绪能力会显示对应提示。
+课标本地工具独立维护于 [Synaxis-Syllabus2017](https://github.com/STMfan/Synaxis-Syllabus2017)，其提取代码、第三方模型与课程原文分别适用各自许可。课标检索依赖服务端已配置的索引和模型；客户端不携带课程资料。2017 年版课程标准不等同于独立高考考纲。旧服务或未就绪能力会显示对应提示。
 
 ## 原生构建
 
@@ -76,7 +76,7 @@ UI 仅从 `webview/types.ts` 导入类型，通过注入的桥接接口调用服
 公开前运行 `npm run check:publication`，再从白名单导出源码：
 
 ```sh
-node scripts/publication.mjs --output releases/source-v1.0.0
+node scripts/publication.mjs --output releases/source-v1.0.0-hotfix1
 ```
 
 导出目录本身就是独立前端项目根目录，直接包含 `package.json`、`src/`、`src-tauri/`、`contracts/` 和 `.github/`。发布使用导出结果；运行数据库、账号、签名、缓存、安装包、历史验收和私有归档不属于源码输入。导出检查可发现当前候选文件中的常见秘密格式，无法证明缺失的 Git 历史从未泄漏。

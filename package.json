@@ -1,6 +1,6 @@
 {
   "name": "synaxis-client",
-  "version": "1.0.0",
+  "version": "1.0.0-hotfix1",
   "private": true,
   "type": "module",
   "scripts": {
@@ -17,7 +17,7 @@
     "build:android": "node scripts/build-android.mjs",
     "check:contract": "node scripts/check-contract.mjs",
     "check:publication": "node scripts/publication.mjs --check",
-    "export:source": "node scripts/publication.mjs --output releases/source-1.0.0",
+    "export:source": "node scripts/publication.mjs --output releases/source-1.0.0-hotfix1",
     "test:browser": "node scripts/test-browser.mjs",
     "check:notices": "node scripts/prepare-notices.mjs --check"
   },

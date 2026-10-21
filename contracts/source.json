@@ -1,7 +1,7 @@
 {
   "repository": "https://github.com/STMfan/Synaxis-backend",
-  "revision": "11772fd8e5c80643a932460e24fc872cc398deb9",
+  "revision": "53922924f4148a9829f66812c06ec446cdd36140",
   "path": "contracts/openapi.json",
-  "sha256": "a75386b0a94f076d4008ea7e8b4901daaf1e3d87b3ea4e854d6c9df6014f536b",
+  "sha256": "7e93ba89b24261f757202be551d1b9bf4466cb8569e3a377302ae2bbfb3ad552",
   "license": "MIT"
 }
